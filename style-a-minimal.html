@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>홍길동 — Portfolio</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+:root{
+  --ink:#141414; --ink-soft:#5b5b5b; --line:#e5e5e5; --paper:#fafafa; --paper2:#f0f0f0;
+  --accent:#141414;
+  --content: 1400px;
+  --gut: 24px;
+  /* 5 / 10 단위 스페이싱 스케일 */
+  --sp1:5px; --sp2:10px; --sp3:20px; --sp4:30px; --sp5:40px; --sp6:60px; --sp7:80px; --sp8:100px; --sp9:120px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Pretendard',-apple-system,'Malgun Gothic',sans-serif;color:var(--ink);background:#fff;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+.shell{max-width:var(--content);margin:0 auto;padding:0 5%}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut)}
+
+/* ---------- header ---------- */
+header.site{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.9);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header.site .shell{display:flex;align-items:center;justify-content:space-between;height:76px}
+.logo{font-size:18px;font-weight:800;letter-spacing:-.01em}
+nav.main{display:flex;gap:var(--sp5)}
+nav.main a{font-size:14px;color:var(--ink-soft);font-weight:500}
+nav.main a:hover{color:var(--ink)}
+.cta-btn{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:#fff;font-size:13px;font-weight:700;padding:12px 20px;border-radius:999px}
+.cta-btn:hover{opacity:.85}
+
+/* ---------- reveal ---------- */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:translateY(0)}
+
+/* ---------- visual (hero image) ---------- */
+.visual{padding:var(--sp6) 0 0}
+.visual-frame{position:relative;border-radius:20px;overflow:hidden;aspect-ratio:21/9}
+.visual-img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- hero text (moved below visual) ---------- */
+.hero-text{padding:var(--sp7) 0 var(--sp6)}
+.hero-text .col-copy{grid-column:1 / span 7}
+.hero-text .eyebrow{font-size:13px;font-weight:700;color:var(--ink-soft);letter-spacing:.02em;margin-bottom:var(--sp3)}
+.hero-text h1{font-size:52px;font-weight:800;letter-spacing:-.02em;line-height:1.28}
+.hero-text p{font-size:16px;color:var(--ink-soft);margin-top:var(--sp3);max-width:480px}
+.hero-text .cta-row{display:flex;gap:var(--sp2);margin-top:var(--sp5)}
+.btn{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:700;padding:14px 24px;border-radius:999px}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-dark:hover{opacity:.85}
+.btn-ghost{border:1px solid var(--line);color:var(--ink)}
+.btn-ghost:hover{background:var(--paper2)}
+.hero-text .col-meta{grid-column:9 / span 4;display:flex;align-items:flex-end}
+.hero-text .col-meta .stat{border-left:2px solid var(--ink);padding-left:var(--sp3)}
+.hero-text .col-meta .stat b{display:block;font-size:28px;font-weight:800}
+.hero-text .col-meta .stat span{font-size:13px;color:var(--ink-soft)}
+
+/* ---------- section shell ---------- */
+.sec{padding:var(--sp8) 0}
+.sec-head{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:var(--sp6)}
+.sec-eyebrow{font-size:12px;font-weight:800;letter-spacing:.08em;color:var(--ink-soft);margin-bottom:var(--sp2)}
+.sec-title{font-size:32px;font-weight:800;letter-spacing:-.01em}
+.sec-link{font-size:13px;font-weight:700;color:var(--ink-soft);display:inline-flex;align-items:center;gap:6px}
+.sec-link:hover{color:var(--ink)}
+
+/* ---------- about ---------- */
+.about-row{grid-column:1/-1;display:grid;grid-template-columns:subgrid;align-items:center;margin-bottom:var(--sp7)}
+.about-photo{grid-column:1/span 4;aspect-ratio:4/5;border-radius:16px;overflow:hidden}
+.about-photo img{width:100%;height:100%;object-fit:cover}
+.about-copy{grid-column:6/span 7}
+.about-copy .tag{font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:var(--sp3)}
+.about-copy h2{font-size:34px;font-weight:800;line-height:1.35;letter-spacing:-.01em}
+.about-copy p{font-size:15px;color:var(--ink-soft);margin-top:var(--sp3);max-width:520px}
+.about-copy .btn{margin-top:var(--sp5)}
+.info-row{grid-column:1/-1;border-top:1px solid var(--line);margin-top:var(--sp7);padding-top:var(--sp7);display:grid;grid-template-columns:subgrid}
+.info-col{grid-column:1/span 5}
+.career-col{grid-column:7/span 6}
+.col-label{font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:var(--sp4)}
+.info-item{display:flex;justify-content:space-between;align-items:baseline;padding:var(--sp3) 0;border-bottom:1px solid var(--line)}
+.info-item .lbl{font-size:14px;font-weight:600;color:var(--ink-soft)}
+.info-item .val{font-size:18px;font-weight:800}
+.career-item{padding:var(--sp3) 0;border-bottom:1px solid var(--line)}
+.career-item .yr{font-size:13px;font-weight:700;color:var(--ink-soft);display:block;margin-bottom:var(--sp1)}
+.career-item .org{font-size:17px;font-weight:800}
+.career-item .role{font-size:14px;color:var(--ink-soft);margin-left:var(--sp2)}
+
+/* ---------- skill ---------- */
+.skill-chips{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sp4);margin-bottom:var(--sp8)}
+.chip{border:1px solid var(--line);border-radius:14px;padding:var(--sp5);display:flex;align-items:center;gap:var(--sp4)}
+.chip .ic{width:52px;height:52px;border-radius:12px;background:var(--paper2);display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:800;flex-shrink:0}
+.chip .nm{font-size:17px;font-weight:700}
+
+/* ---------- projects ---------- */
+.proj-grid{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:var(--gut)}
+.proj-card{display:block}
+.proj-art{aspect-ratio:4/3;border-radius:14px;overflow:hidden;margin-bottom:var(--sp3);position:relative}
+.proj-art img{width:100%;height:100%;object-fit:cover}
+
+.proj-year{font-size:12px;font-weight:700;color:var(--ink-soft)}
+.proj-card h3{font-size:19px;font-weight:800;margin:var(--sp1) 0 var(--sp2)}
+.proj-card p{font-size:13.5px;color:var(--ink-soft);margin-bottom:var(--sp3)}
+.proj-tags{display:flex;justify-content:space-between;align-items:center}
+.tag-row{display:flex;gap:6px}
+.tag-row span{font-size:11px;font-weight:700;border:1px solid var(--line);padding:5px 10px;border-radius:999px;color:var(--ink-soft)}
+.arrow-circ{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.proj-card:hover .arrow-circ{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+/* ---------- board ---------- */
+.board-note{grid-column:1/-1;font-size:13.5px;color:var(--ink-soft);margin-bottom:var(--sp4);max-width:560px}
+.board-list{grid-column:1/-1;border-top:1px solid var(--line)}
+.board-row{display:flex;align-items:center;gap:var(--sp3);padding:var(--sp3) 0;border-bottom:1px solid var(--line)}
+.board-row .bd{font-size:11px;font-weight:700;border:1px solid var(--line);padding:5px 10px;border-radius:999px;color:var(--ink-soft);flex-shrink:0}
+.board-row .bt{flex:1;font-size:14.5px;font-weight:700}
+.board-row .bm{font-size:12.5px;color:var(--ink-soft)}
+
+/* ---------- contact ---------- */
+.contact{background:var(--paper2)}
+.contact-copy{grid-column:1/span 5}
+.contact-copy .tag{font-size:12px;font-weight:800;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:var(--sp3)}
+.contact-copy h2{font-size:34px;font-weight:800;line-height:1.35}
+.contact-copy p{font-size:15px;color:var(--ink-soft);margin-top:var(--sp3)}
+.contact-form{grid-column:7/span 6;display:flex;flex-direction:column;gap:var(--sp3)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp3)}
+.field label{display:block;font-size:12px;font-weight:700;margin-bottom:var(--sp1)}
+.field input, .field textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:13px 14px;font-family:inherit;font-size:14px;background:#fff}
+.field input:focus, .field textarea:focus{outline:none;border-color:var(--ink)}
+
+/* ---------- footer ---------- */
+footer.site{border-top:1px solid var(--line)}
+footer.site .shell{display:flex;align-items:center;justify-content:space-between;padding:var(--sp5) 5%}
+footer.site .fbrand{font-size:14px;font-weight:800}
+footer.site .frole{font-size:12px;color:var(--ink-soft);margin-left:var(--sp2)}
+footer.site nav{display:flex;gap:var(--sp4)}
+footer.site nav a{font-size:13px;color:var(--ink-soft)}
+footer.site .socials{display:flex;gap:var(--sp3)}
+footer.site .socials a{width:34px;height:34px;border-radius:50%;border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:13px}
+
+@media(max-width:960px){
+  nav.main, .hero-text .col-meta{display:none}
+  .hero-text .col-copy{grid-column:1/-1}
+  .about-photo, .about-copy{grid-column:1/-1}
+  .about-photo{margin-bottom:var(--sp5)}
+  .info-col, .career-col{grid-column:1/-1}
+  .career-col{margin-top:var(--sp6)}
+  .skill-chips{grid-template-columns:1fr}
+  .chip{padding:var(--sp3)}
+  .proj-grid{grid-template-columns:1fr}
+  .contact-copy, .contact-form{grid-column:1/-1}
+  .contact-form{margin-top:var(--sp5)}
+  footer.site .shell{flex-direction:column;gap:var(--sp3)}
+}
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="shell">
+    <div class="logo">홍길동</div>
+    <nav class="main">
+      <a href="#about">소개</a>
+      <a href="#skill">스킬</a>
+      <a href="#project">포트폴리오</a>
+      <a href="#board">게시판</a>
+      <a href="#contact">문의</a>
+    </nav>
+    <a href="#contact" class="cta-btn">문의하기 →</a>
+  </div>
+</header>
+
+<!-- ============ VISUAL (위로 뺌) ============ -->
+<section class="visual">
+  <div class="shell">
+    <div class="visual-frame reveal">
+      <img src="img/visual.jpg" alt="" class="visual-img">
+    </div>
+  </div>
+</section>
+
+<!-- ============ HERO TEXT (visual 아래로) ============ -->
+<section class="hero-text">
+  <div class="shell grid">
+    <div class="col-copy reveal">
+      <div class="eyebrow">PORTFOLIO</div>
+      <h1>만든 것으로 증명하는<br>홍길동의 포트폴리오</h1>
+      <p>기획부터 배포까지 직접 구현한 프로젝트들을 모았습니다. 아래에서 작업물과 사용한 기술을 확인하실 수 있습니다.</p>
+      <div class="cta-row">
+        <a href="#project" class="btn btn-dark">포트폴리오 보기 →</a>
+        <a href="#about" class="btn btn-ghost">소개 더 보기</a>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section class="sec" id="about">
+  <div class="shell">
+    <div class="sec-eyebrow">ABOUT</div>
+    <div class="grid">
+      <div class="about-row reveal">
+        <div class="about-photo"><img src="img/profile.jpg" alt="홍길동"></div>
+        <div class="about-copy">
+          <div class="tag">WHO I AM</div>
+          <h2>안녕하세요,<br>웹을 만들고 있는<br>홍길동입니다.</h2>
+          <p>결과물만큼 그 과정에서 무엇을 고민했는지를 중요하게 생각합니다. 혼자 기획부터 배포까지 끝내본 프로젝트도, 여럿이 역할을 나눠 완성한 프로젝트도 있습니다.</p>
+          <a href="#skill" class="btn btn-dark">더 알아보기 →</a>
+        </div>
+      </div>
+      <div class="info-row reveal">
+        <div class="info-col">
+          <div class="col-label">INFO</div>
+          <div class="info-item"><div class="lbl">이름</div><div class="val">홍길동</div></div>
+          <div class="info-item"><div class="lbl">과정</div><div class="val">바이브코딩 풀스택</div></div>
+                    <div class="info-item"><div class="lbl">이메일</div><div class="val">hello@example.com</div></div>
+        </div>
+        <div class="career-col">
+          <div class="col-label">경력 · 학력</div>
+          <div class="career-item"><span class="yr">2026 — 현재</span><span class="org">SBSART GANGNAM</span><span class="role">바이브코딩 풀스택 과정</span></div>
+          <div class="career-item"><span class="yr">2025</span><span class="org">OO대학교</span><span class="role">시각디자인학과 졸업</span></div>
+          <div class="career-item"><span class="yr">2025</span><span class="org">정보처리기능사</span><span class="role">자격 취득</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILL ============ -->
+<section class="sec" id="skill" style="background:var(--paper)">
+  <div class="shell">
+    <div class="sec-head">
+      <div>
+        <div class="sec-eyebrow">SKILL</div>
+        <div class="sec-title">다룰 수 있는 것들</div>
+      </div>
+    </div>
+    <div class="grid">
+      <div class="skill-chips reveal">
+        <div class="chip"><div class="ic">&lt;/&gt;</div><div class="nm">HTML / CSS</div></div>
+        <div class="chip"><div class="ic">JS</div><div class="nm">JavaScript</div></div>
+        <div class="chip"><div class="ic">⌥</div><div class="nm">Git · GitHub</div></div>
+        <div class="chip"><div class="ic">DB</div><div class="nm">Supabase</div></div>
+        <div class="chip"><div class="ic">✦</div><div class="nm">Claude Code</div></div>
+        <div class="chip"><div class="ic">▦</div><div class="nm">반응형 레이아웃</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECT ============ -->
+<section class="sec" id="project">
+  <div class="shell">
+    <div class="sec-head">
+      <div>
+        <div class="sec-eyebrow">PORTFOLIO</div>
+        <div class="sec-title">주요 프로젝트</div>
+      </div>
+      <a href="#" class="sec-link">전체 보기 →</a>
+    </div>
+    <div class="grid">
+      <div class="proj-grid">
+        <a class="proj-card reveal">
+          <div class="proj-art"><img src="img/project-1.jpg" alt=""></div>
+          <span class="proj-year">2026</span>
+          <h3>오늘의 할일 앱</h3>
+          <p>Supabase로 데이터를 저장하는 개인 투두리스트</p>
+          <div class="proj-tags">
+            <div class="tag-row"><span>JavaScript</span><span>Supabase</span></div>
+            <div class="arrow-circ">→</div>
+          </div>
+        </a>
+        <a class="proj-card reveal">
+          <div class="proj-art"><img src="img/project-2.jpg" alt=""></div>
+          <span class="proj-year">2026</span>
+          <h3>팀 일정 공유 페이지</h3>
+          <p>3인 팀 프로젝트, 역할을 나눠 화면별로 맡아 제작</p>
+          <div class="proj-tags">
+            <div class="tag-row"><span>HTML</span><span>GitHub</span></div>
+            <div class="arrow-circ">→</div>
+          </div>
+        </a>
+        <a class="proj-card reveal">
+          <div class="proj-art"><img src="img/project-3.jpg" alt=""></div>
+          <span class="proj-year">2025</span>
+          <h3>무드보드 갤러리</h3>
+          <p>좋아하는 이미지를 모아두는 개인 갤러리 페이지</p>
+          <div class="proj-tags">
+            <div class="tag-row"><span>HTML</span><span>CSS</span></div>
+            <div class="arrow-circ">→</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BOARD ============ -->
+<section class="sec" id="board" style="background:var(--paper)">
+  <div class="shell">
+    <div class="sec-head">
+      <div>
+        <div class="sec-eyebrow">BOARD</div>
+        <div class="sec-title">게시판</div>
+      </div>
+    </div>
+    <div class="grid">
+      <p class="board-note">작업하면서 남긴 글들입니다. Supabase와 연결하면 실제로 글을 쓰고 불러오는 게시판으로 바뀝니다.</p>
+      <div class="board-list">
+        <a class="board-row"><span class="bd">공지</span><span class="bt">포트폴리오 1차 완성 — 피드백 환영합니다</span><span class="bm">2026.09.24</span></a>
+        <a class="board-row"><span class="bd">업데이트</span><span class="bt">오늘의 할일 앱, Supabase 연동까지 완료</span><span class="bm">2026.09.18</span></a>
+        <a class="board-row"><span class="bd">회고</span><span class="bt">팀 프로젝트 회고 — 역할 분담에서 배운 것</span><span class="bm">2026.09.12</span></a>
+        <a class="board-row"><span class="bd">정리</span><span class="bt">git push 오류(rejected) 해결 방법 정리</span><span class="bm">2026.09.05</span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="sec contact" id="contact">
+  <div class="shell grid">
+    <div class="contact-copy reveal">
+      <div class="tag">CONTACT</div>
+      <h2>함께 좋은<br>프로젝트를<br>만들어보세요.</h2>
+      <p>프로젝트 또는 협업 문의를 남겨주세요.<br>빠르게 답변드리겠습니다.</p>
+    </div>
+    <form class="contact-form reveal">
+      <div class="field-row">
+        <div class="field"><label>이름</label><input type="text" placeholder="이름을 입력해주세요."></div>
+        <div class="field"><label>이메일</label><input type="email" placeholder="이메일을 입력해주세요."></div>
+      </div>
+      <div class="field"><label>문의 내용</label><textarea rows="5" placeholder="문의 내용을 입력해주세요."></textarea></div>
+      <button type="submit" class="btn btn-dark" style="align-self:flex-start;border:0;cursor:pointer">문의 보내기 →</button>
+    </form>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="shell">
+    <div style="display:flex;align-items:baseline">
+      <span class="fbrand">홍길동</span><span class="frole">Web Portfolio</span>
+    </div>
+    <div class="socials">
+      <a href="https://github.com/honggildong">GH</a>
+      <a href="mailto:hello@example.com">@</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const els = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+}, {threshold:0.12});
+els.forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>

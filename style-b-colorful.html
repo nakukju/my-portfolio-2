@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>홍길동 — Portfolio</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+:root{
+  --cream:#f3ece2; --ink:#171512; --gold:#b5893f; --gold-soft:#c9a76b;
+  --dark:#141210; --line:rgba(23,21,18,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Pretendard',-apple-system,'Malgun Gothic',sans-serif;color:var(--ink);background:var(--cream);line-height:1.6}
+.shell{max-width:1320px;margin:0 auto;padding:0 5%}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* ---------- hero ---------- */
+.hero{position:relative;padding:50px 0 0;overflow:hidden}
+.hero-top{display:flex;justify-content:space-between;align-items:center;font-size:12px;font-weight:700;letter-spacing:.14em}
+.hero-top .yr{display:flex;align-items:center;gap:8px}
+.masttitle{font-size:clamp(70px,11vw,160px);font-weight:800;letter-spacing:-.02em;line-height:.95;margin:70px 0 0;text-align:center}
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;align-items:end;margin-top:10px}
+.hero-copy{padding-bottom:70px}
+.hero-copy .eyebrow{font-weight:800;font-size:13px;letter-spacing:.2em;color:var(--gold);margin-bottom:10px}
+.hero-copy h2{font-size:30px;font-weight:800;letter-spacing:-.01em;line-height:1.25;margin-bottom:20px}
+.hero-copy .rule{width:70px;height:2px;background:var(--ink);margin-bottom:20px}
+.hero-copy p{font-size:14px;color:#4a453e;max-width:320px;margin-bottom:30px}
+.hero-copy .name{font-weight:800;font-size:30px;letter-spacing:.02em;color:var(--gold)}
+.hero-photo .frame{aspect-ratio:3/4;border-radius:2px;overflow:hidden;background:#cfc8ba}
+.hero-photo .frame img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- section shells ---------- */
+.sec-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px}
+.sec-head .lbl{font-size:12px;font-weight:800;letter-spacing:.2em;color:var(--gold-soft)}
+.sec-head a{font-size:11px;font-weight:700;letter-spacing:.08em;color:#cfc8ba;display:flex;align-items:center;gap:8px}
+
+/* ---------- profile / info / career ---------- */
+.info-item{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line)}
+.info-item .lbl{font-size:13px;color:#6b6154}
+.info-item .val{font-size:15px;font-weight:700}
+.career-item{padding:13px 0;border-bottom:1px solid var(--line)}
+.career-item .yr{font-size:12px;font-weight:800;color:var(--gold);display:block;margin-bottom:3px}
+.career-item .org{font-size:15px;font-weight:700}
+.career-item .role{font-size:13px;color:#6b6154;margin-left:8px}
+
+/* ---------- works ---------- */
+.works{background:var(--dark);color:#f2ede4;padding:100px 0}
+.works-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.work-tile{display:block}
+.work-art{aspect-ratio:3/4;border-radius:3px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:22px}
+.work-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
+.work-art::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(10,9,7,.82));z-index:0}
+.work-art h3{font-weight:800;font-size:22px;color:#fff;position:relative;z-index:1}
+.work-tile .cap{margin-top:14px}
+.work-tile .cn{font-size:12px;font-weight:800;letter-spacing:.05em}
+.work-tile .ct{font-size:11px;color:#a39c8d;margin-top:3px}
+
+/* ---------- skill (standalone) ---------- */
+.skill-sec{padding:40px 0 120px;word-break:keep-all}
+.skill-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:60px}
+.skill-copy .eyebrow{font-weight:800;font-size:13px;letter-spacing:.2em;color:var(--gold);margin-bottom:14px}
+.skill-copy h2{font-size:30px;font-weight:800;line-height:1.35}
+.skill-copy p{font-size:14px;color:#5c574e;margin-top:14px;max-width:320px}
+.skill-list{border-top:2px solid var(--ink)}
+.skill-row{display:flex;align-items:center;gap:18px;padding:18px 0;border-bottom:1px solid var(--line)}
+.skill-row .no{font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--gold);width:28px;flex-shrink:0}
+.skill-row .nm{flex:1;font-size:17px;font-weight:800}
+.skill-row .cat{font-size:11px;font-weight:800;color:var(--dark);background:var(--gold-soft);padding:5px 12px;border-radius:2px;letter-spacing:.04em;flex-shrink:0}
+
+/* ---------- info / career + quote ---------- */
+.mid{padding:100px 0}
+.mid-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px}
+.mid h4{font-size:12px;font-weight:800;letter-spacing:.16em;color:var(--gold);margin-bottom:26px}
+.quote-photo{position:relative;border-radius:3px;overflow:hidden;aspect-ratio:3/3.6;background:#b8ae98}
+.quote-photo img{width:100%;height:100%;object-fit:cover}
+.quote-box{position:absolute;left:20px;right:20px;bottom:20px;background:rgba(20,18,15,.78);padding:20px 22px;border-radius:2px}
+.quote-box p{color:#f2ede4;font-size:13.5px;font-weight:500;line-height:1.6}
+.quote-box .sig{margin-top:10px;font-size:11px;letter-spacing:.1em;color:var(--gold-soft);font-weight:800}
+
+/* ---------- board (dark, matching works) ---------- */
+.board{background:var(--dark);color:#f2ede4;padding:100px 0}
+.board-note{font-size:13px;color:#a39c8d;margin-bottom:28px;max-width:520px}
+.board-list{border-top:1px solid rgba(242,237,228,.14)}
+.board-row{display:flex;align-items:center;gap:18px;padding:20px 0;border-bottom:1px solid rgba(242,237,228,.14)}
+.board-row .bd{font-size:11px;font-weight:800;color:var(--dark);background:var(--gold-soft);padding:5px 12px;border-radius:2px;flex-shrink:0;letter-spacing:.04em}
+.board-row .bt{flex:1;font-size:15px;font-weight:700}
+.board-row .bm{font-size:12px;color:#8a8171;letter-spacing:.03em}
+
+/* ---------- contact ---------- */
+.contact{padding:100px 0}
+.contact-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:60px}
+.contact-copy h2{font-size:30px;font-weight:800;line-height:1.35}
+.contact-copy p{font-size:14px;color:#5c574e;margin-top:14px}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:12px;font-weight:700;margin-bottom:6px;letter-spacing:.05em;color:var(--gold)}
+.field input, .field textarea{width:100%;border:0;border-bottom:1.5px solid var(--line);padding:12px 2px;font-family:inherit;font-size:14px;background:transparent}
+.field input:focus, .field textarea:focus{outline:none;border-color:var(--gold)}
+.submit-btn{background:var(--ink);color:#fff;font-size:13px;font-weight:800;letter-spacing:.05em;padding:14px 26px;border:0;border-radius:2px;cursor:pointer}
+.submit-btn:hover{background:var(--gold)}
+
+/* ---------- footer ---------- */
+footer{background:var(--dark);color:#f2ede4;padding:80px 0}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr auto;gap:40px;align-items:start}
+footer h2{font-weight:800;font-size:26px;color:var(--gold-soft);line-height:1.3}
+.foot-col h5{font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--gold-soft);margin-bottom:16px}
+.foot-col div{font-size:13px;color:#cfc8ba;margin-bottom:10px}
+.foot-mono{font-weight:800;font-size:26px;color:var(--gold-soft);align-self:center}
+
+@media(max-width:960px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-photo{margin-top:30px}
+  .works-grid{grid-template-columns:repeat(2,1fr)}
+  .skill-grid{grid-template-columns:1fr;gap:30px}
+  .mid-grid{grid-template-columns:1fr;gap:36px}
+  .contact-grid{grid-template-columns:1fr;gap:30px}
+  .foot-grid{grid-template-columns:1fr 1fr;gap:30px}
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="shell">
+    <div class="hero-top">
+      <span>DESIGN PORTFOLIO</span>
+      <span class="yr">✦ 2026</span>
+    </div>
+    <h1 class="masttitle">PORTFOLIO</h1>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="eyebrow">PORTFOLIO</div>
+        <h2>BRAND &amp;<br>UI DESIGNER</h2>
+        <div class="rule"></div>
+        <p>카페 브랜딩부터 모바일 UI까지, 브랜드의 첫인상과 사용자가 매일 만나는 화면을 함께 디자인합니다. 로고 한 장에서 앱 화면까지 하나의 톤으로 이어지도록 고민합니다.</p>
+        <div class="name">HONG GILDONG</div>
+      </div>
+      <div class="hero-photo">
+        <div class="frame"><img src="img/profile.jpg" alt=""></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="works">
+  <div class="shell">
+    <div class="sec-head">
+      <div class="lbl">SELECTED WORKS</div>
+      <a href="#">VIEW ALL WORKS →</a>
+    </div>
+    <div class="works-grid">
+      <a class="work-tile">
+        <div class="work-art"><img src="img/project-1.jpg" alt=""><h3>오늘의<br>할일 앱</h3></div>
+        <div class="cap"><div class="cn">오늘의 할일 앱</div><div class="ct">JAVASCRIPT · SUPABASE</div></div>
+      </a>
+      <a class="work-tile">
+        <div class="work-art"><img src="img/project-2.jpg" alt=""><h3>팀 일정<br>공유 페이지</h3></div>
+        <div class="cap"><div class="cn">팀 일정 공유 페이지</div><div class="ct">HTML · GITHUB</div></div>
+      </a>
+      <a class="work-tile">
+        <div class="work-art"><img src="img/project-3.jpg" alt=""><h3>무드보드<br>갤러리</h3></div>
+        <div class="cap"><div class="cn">무드보드 갤러리</div><div class="ct">HTML · CSS</div></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="mid">
+  <div class="shell mid-grid">
+    <div>
+      <h4>INFO</h4>
+      <div class="info-item"><span class="lbl">이름</span><span class="val">홍길동</span></div>
+      <div class="info-item"><span class="lbl">과정</span><span class="val">바이브코딩 풀스택</span></div>
+      <div class="info-item"><span class="lbl">이메일</span><span class="val">hello@example.com</span></div>
+
+      <h4 style="margin-top:56px">경력 · 학력</h4>
+      <div class="career-item"><span class="yr">2026 — 현재</span><span class="org">SBSART GANGNAM</span><span class="role">바이브코딩 풀스택 과정</span></div>
+      <div class="career-item"><span class="yr">2025</span><span class="org">OO대학교</span><span class="role">시각디자인학과 졸업</span></div>
+      <div class="career-item"><span class="yr">2025</span><span class="org">정보처리기능사</span><span class="role">자격 취득</span></div>
+    </div>
+    <div class="quote-photo">
+      <img src="img/visual.jpg" alt="">
+      <div class="quote-box">
+        <p>"완성도만큼 과정에서 무엇을 고민했는지를 중요하게 생각합니다."</p>
+        <div class="sig">홍길동</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="skill-sec">
+  <div class="shell skill-grid">
+    <div class="skill-copy">
+      <div class="eyebrow">SKILL</div>
+      <h2>브랜드에서 화면까지<br>다루는 디자인 영역</h2>
+      <p>로고와 패키지 같은 브랜드 작업부터 모바일 앱 화면 설계까지, 작업에 주로 쓰는 영역과 도구입니다.</p>
+    </div>
+    <div class="skill-list">
+      <div class="skill-row"><span class="no">01</span><span class="nm">브랜드 아이덴티티 · 로고</span><span class="cat">BRANDING</span></div>
+      <div class="skill-row"><span class="no">02</span><span class="nm">패키지 · 메뉴판 디자인</span><span class="cat">BRANDING</span></div>
+      <div class="skill-row"><span class="no">03</span><span class="nm">모바일 UI 설계</span><span class="cat">UI / UX</span></div>
+      <div class="skill-row"><span class="no">04</span><span class="nm">프로토타이핑</span><span class="cat">UI / UX</span></div>
+      <div class="skill-row"><span class="no">05</span><span class="nm">Figma</span><span class="cat">TOOL</span></div>
+      <div class="skill-row"><span class="no">06</span><span class="nm">Illustrator · Photoshop</span><span class="cat">TOOL</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="board">
+  <div class="shell">
+    <div class="sec-head">
+      <div class="lbl">BOARD</div>
+    </div>
+    <p class="board-note">작업하면서 남긴 글들입니다. Supabase와 연결하면 실제로 글을 쓰고 불러오는 게시판으로 바뀝니다.</p>
+    <div class="board-list">
+      <div class="board-row"><span class="bd">공지</span><span class="bt">포트폴리오 1차 완성 — 피드백 환영합니다</span><span class="bm">2026.09.24</span></div>
+      <div class="board-row"><span class="bd">업데이트</span><span class="bt">오늘의 할일 앱, Supabase 연동까지 완료</span><span class="bm">2026.09.18</span></div>
+      <div class="board-row"><span class="bd">회고</span><span class="bt">팀 프로젝트 회고 — 역할 분담에서 배운 것</span><span class="bm">2026.09.12</span></div>
+      <div class="board-row"><span class="bd">정리</span><span class="bt">git push 오류(rejected) 해결 방법 정리</span><span class="bm">2026.09.05</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <div class="shell contact-grid">
+    <div class="contact-copy">
+      <div class="eyebrow" style="font-weight:800;font-size:13px;letter-spacing:.2em;color:var(--gold);margin-bottom:14px">CONTACT</div>
+      <h2>함께 좋은<br>프로젝트를<br>만들어요.</h2>
+      <p>프로젝트 또는 협업 문의를 남겨주세요.<br>빠르게 답변드리겠습니다.</p>
+    </div>
+    <form class="contact-form">
+      <div class="field-row">
+        <div class="field"><label>이름</label><input type="text" placeholder="이름을 입력해주세요."></div>
+        <div class="field"><label>이메일</label><input type="email" placeholder="이메일을 입력해주세요."></div>
+      </div>
+      <div class="field"><label>문의 내용</label><textarea rows="4" placeholder="문의 내용을 입력해주세요."></textarea></div>
+      <button type="submit" class="submit-btn">문의 보내기 →</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="shell foot-grid">
+    <h2>홍길동<br>Portfolio</h2>
+    <div class="foot-col">
+      <h5>CONNECT</h5>
+      <div>hello@example.com</div>
+      <div>바이브코딩 풀스택 과정</div>
+      <div>github.com/honggildong</div>
+    </div>
+    <div class="foot-col">
+      <h5>FOLLOW</h5>
+      <div>GitHub — github.com/honggildong</div>
+      <div>Email — hello@example.com</div>
+    </div>
+    <div class="foot-mono">HG</div>
+  </div>
+</footer>
+
+</body>
+</html>

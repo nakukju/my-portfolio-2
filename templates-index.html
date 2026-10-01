@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>스타일 4종 비교 | 바이브코딩 모듈 B</title>
+<style>
+:root{
+  --navy-950:#080f22; --navy-900:#0d1730; --accent:#8a9bc4; --accent-deep:#425a8f;
+  --paper:#f4f5f8; --ink:#12172a; --ink-soft:#525a72; --line:#d8dce6;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Pretendard',-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;background:var(--paper);color:var(--ink);line-height:1.7}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.hero{background:linear-gradient(180deg,var(--navy-950),var(--navy-900) 75%);color:#fff;padding:52px 0 40px}
+.hero .eyebrow{font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:14px}
+.hero h1{font-size:clamp(24px,4vw,32px);font-weight:800;letter-spacing:-.02em;margin-bottom:10px}
+.hero p{color:#aeb7d1;font-size:14.5px;max-width:600px}
+.guide{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px 24px;margin:-18px 0 40px;font-size:13.5px;color:var(--ink-soft);box-shadow:0 10px 26px rgba(13,23,48,.08)}
+.guide b{color:var(--ink)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:60px}
+.card{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.frame-box{height:360px;overflow:hidden;position:relative;background:#e8eaf0;border-bottom:1px solid var(--line)}
+.frame-box iframe{width:200%;height:200%;border:0;transform:scale(0.5);transform-origin:top left;pointer-events:none}
+.card-body{padding:18px 20px 20px}
+.card-body .name{font-size:16px;font-weight:800;color:var(--navy-900);margin-bottom:4px}
+.card-body .desc{font-size:13px;color:var(--ink-soft);margin-bottom:14px}
+.card-body .keywords{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.card-body .keywords span{font-size:11.5px;font-weight:700;background:var(--paper);border:1px solid var(--line);color:var(--ink-soft);padding:4px 10px;border-radius:14px}
+.card-body a{display:inline-block;font-size:13px;font-weight:700;color:#fff;background:var(--accent-deep);padding:9px 18px;border-radius:6px;text-decoration:none}
+.card-body a:hover{background:var(--navy-900)}
+.next{background:var(--navy-900);color:#fff;border-radius:10px;padding:26px 28px;margin-bottom:60px}
+.next .nt{font-size:12px;color:var(--accent);font-weight:800;letter-spacing:.04em;text-transform:uppercase;margin-bottom:8px}
+.next p{font-size:14px;color:#dfe3ef}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.frame-box{height:300px}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">모듈 B · 바이브코딩 · 스타일 예시</div>
+    <h1>어떤 느낌으로 만들까요?</h1>
+    <p>같은 목적(개인 포트폴리오)이라도 톤에 따라 전혀 다른 인상을 줍니다. 4가지 스타일의 메인 화면을 직접 둘러보고, 내 사이트에 어울리는 방향을 골라보세요.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <div class="guide">
+    <b>안내</b> — 아래는 각 스타일의 메인 화면만 미리 만든 예시입니다. 실제로는 이 화면 그대로 쓰는 게 아니라, 이런 톤과 구조를 참고해서 내 이름·경험·프로젝트로 새로 채우게 됩니다. 카드를 눌러 전체 화면으로 크게 볼 수 있습니다.
+  </div>
+
+  <div class="grid">
+    <div class="card">
+      <div class="frame-box"><iframe src="style-a-minimal.html" tabindex="-1"></iframe></div>
+      <div class="card-body">
+        <div class="name">A. 미니멀</div>
+        <div class="desc">12컬럼 그리드에 여백을 넉넉히 쓴 스타일. 실사진과 담백한 흑백 톤으로 신뢰감을 주고 싶을 때.</div>
+        <div class="keywords"><span>넉넉한 여백</span><span>12컬럼 그리드</span><span>실사진</span></div>
+        <a href="style-a-minimal.html" target="_blank">전체 화면으로 보기</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="frame-box"><iframe src="style-b-colorful.html" tabindex="-1"></iframe></div>
+      <div class="card-body">
+        <div class="name">B. 에디토리얼</div>
+        <div class="desc">크림+블랙+골드 톤의 매거진 스타일. 큰 타이틀과 골드 포인트로 완성도 있는 인상을 주고 싶을 때.</div>
+        <div class="keywords"><span>매거진 톤</span><span>골드 포인트</span><span>큰 마스트헤드</span></div>
+        <a href="style-b-colorful.html" target="_blank">전체 화면으로 보기</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="frame-box"><iframe src="style-c-grid.html" tabindex="-1"></iframe></div>
+      <div class="card-body">
+        <div class="name">C. 카드형</div>
+        <div class="desc">부드러운 회색 배경 위에 둥근 흰 카드를 올린 스타일. 정보를 구획별로 정돈해서 보여주고 싶을 때.</div>
+        <div class="keywords"><span>둥근 카드</span><span>알약 라벨</span><span>벤토 그리드</span></div>
+        <a href="style-c-grid.html" target="_blank">전체 화면으로 보기</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="frame-box"><iframe src="style-d-dark.html" tabindex="-1"></iframe></div>
+      <div class="card-body">
+        <div class="name">D. 다크모던</div>
+        <div class="desc">거의 검정에 가까운 배경과 골드 포인트, 카드 없이 구분선으로만 정리한 스타일. 개발자·테크 인상을 주고 싶을 때.</div>
+        <div class="keywords"><span>다크 배경</span><span>세로 라벨</span><span>카드 없는 구성</span></div>
+        <a href="style-d-dark.html" target="_blank">전체 화면으로 보기</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="next">
+    <div class="nt">다음 단계</div>
+    <p>스타일을 하나 골랐다면, CLAUDE.md에 선택한 스타일명과 이유를 적어두세요. 4일차에 이 방향을 바탕으로 내 이름·경험·프로젝트를 채운 실제 사이트를 디자인합니다.</p>
+  </div>
+</div>
+
+</body>
+</html>
