@@ -61,13 +61,14 @@ a{color:inherit;text-decoration:none}
 .skill-sec{padding:40px 0 120px;word-break:keep-all}
 .skill-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:60px}
 .skill-copy .eyebrow{font-weight:800;font-size:13px;letter-spacing:.2em;color:var(--gold);margin-bottom:14px}
-.skill-copy h2{font-size:30px;font-weight:800;line-height:1.35}
-.skill-copy p{font-size:14px;color:#5c574e;margin-top:14px;max-width:320px}
-.skill-list{border-top:2px solid var(--ink)}
-.skill-row{display:flex;align-items:center;gap:18px;padding:18px 0;border-bottom:1px solid var(--line)}
-.skill-row .no{font-size:12px;font-weight:800;letter-spacing:.1em;color:var(--gold);width:28px;flex-shrink:0}
-.skill-row .nm{flex:1;font-size:17px;font-weight:800}
-.skill-row .cat{font-size:11px;font-weight:800;color:var(--dark);background:var(--gold-soft);padding:5px 12px;border-radius:2px;letter-spacing:.04em;flex-shrink:0}
+.skill-copy h2{font-size:30px;font-weight:800;line-height:1.35;margin-bottom:20px}
+.skill-copy .rule{width:70px;height:2px;background:var(--ink);margin-bottom:20px}
+.skill-copy p{font-size:14px;color:#5c574e;max-width:320px}
+.skill-list{border-top:1.5px solid var(--ink)}
+.skill-item{display:grid;grid-template-columns:150px 1fr auto;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.skill-item .cat{font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--gold)}
+.skill-item .nm{font-size:15px;font-weight:700}
+.skill-item .ds{font-size:13px;color:#6b6154;text-align:right}
 
 /* ---------- info / career + quote ---------- */
 .mid{padding:100px 0}
@@ -117,6 +118,10 @@ footer h2{font-weight:800;font-size:26px;color:var(--gold-soft);line-height:1.3}
   .mid-grid{grid-template-columns:1fr;gap:36px}
   .contact-grid{grid-template-columns:1fr;gap:30px}
   .foot-grid{grid-template-columns:1fr 1fr;gap:30px}
+}
+@media(max-width:600px){
+  .skill-item{grid-template-columns:1fr;gap:4px}
+  .skill-item .ds{text-align:left}
 }
 </style>
 </head>
@@ -194,16 +199,17 @@ footer h2{font-weight:800;font-size:26px;color:var(--gold-soft);line-height:1.3}
   <div class="shell skill-grid">
     <div class="skill-copy">
       <div class="eyebrow">SKILL</div>
-      <h2>브랜드에서 화면까지<br>다루는 디자인 영역</h2>
-      <p>로고와 패키지 같은 브랜드 작업부터 모바일 앱 화면 설계까지, 작업에 주로 쓰는 영역과 도구입니다.</p>
+      <h2>다루는<br>도구와 기술</h2>
+      <div class="rule"></div>
+      <p>기획부터 배포까지, 수업과 프로젝트에서 직접 사용해 본 기술들입니다.</p>
     </div>
     <div class="skill-list">
-      <div class="skill-row"><span class="no">01</span><span class="nm">브랜드 아이덴티티 · 로고</span><span class="cat">BRANDING</span></div>
-      <div class="skill-row"><span class="no">02</span><span class="nm">패키지 · 메뉴판 디자인</span><span class="cat">BRANDING</span></div>
-      <div class="skill-row"><span class="no">03</span><span class="nm">모바일 UI 설계</span><span class="cat">UI / UX</span></div>
-      <div class="skill-row"><span class="no">04</span><span class="nm">프로토타이핑</span><span class="cat">UI / UX</span></div>
-      <div class="skill-row"><span class="no">05</span><span class="nm">Figma</span><span class="cat">TOOL</span></div>
-      <div class="skill-row"><span class="no">06</span><span class="nm">Illustrator · Photoshop</span><span class="cat">TOOL</span></div>
+      <div class="skill-item"><span class="cat">FRONTEND</span><span class="nm">HTML / CSS</span><span class="ds">시맨틱 마크업과 레이아웃 구성</span></div>
+      <div class="skill-item"><span class="cat">FRONTEND</span><span class="nm">JavaScript</span><span class="ds">DOM 조작과 인터랙션 구현</span></div>
+      <div class="skill-item"><span class="cat">VERSION CONTROL</span><span class="nm">Git · GitHub</span><span class="ds">브랜치 관리와 협업 흐름</span></div>
+      <div class="skill-item"><span class="cat">BACKEND</span><span class="nm">Supabase</span><span class="ds">데이터베이스와 인증 연동</span></div>
+      <div class="skill-item"><span class="cat">WORKFLOW</span><span class="nm">Claude Code</span><span class="ds">AI와 함께하는 바이브코딩</span></div>
+      <div class="skill-item"><span class="cat">DESIGN</span><span class="nm">반응형 레이아웃</span><span class="ds">모바일부터 데스크톱까지 대응</span></div>
     </div>
   </div>
 </section>
