@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>목록 — 한국초상권연구소</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="list">
+<header id="site-header"></header>
+
+<main class="wrap list-page">
+  <div class="page-head">
+    <p class="eyebrow">Archive</p>
+    <h1 id="list-title"></h1>
+    <p id="list-desc"></p>
+  </div>
+
+  <nav class="tabs" aria-label="분류">
+    <a href="list.html?cat=law" data-cat="law">법령과 사례</a>
+    <a href="list.html?cat=works" data-cat="works">AI 창작관</a>
+    <a href="list.html?cat=column" data-cat="column">칼럼</a>
+  </nav>
+
+  <div class="filters" id="filters" role="group" aria-label="필터"></div>
+  <div id="list"></div>
+</main>
+
+<footer id="site-footer"></footer>
+
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script>
+  var params = new URLSearchParams(location.search);
+  var cat = KPRI_CATS[params.get('cat')] ? params.get('cat') : 'law';
+  var items = KPRI.byCat(cat);
+
+  document.title = KPRI_CATS[cat].name + ' — 한국초상권연구소';
+  document.getElementById('list-title').textContent = KPRI_CATS[cat].name;
+  document.getElementById('list-desc').textContent = KPRI_CATS[cat].desc;
+  document.querySelectorAll('.tabs a').forEach(function (a) {
+    if (a.dataset.cat === cat) { a.classList.add('on'); a.setAttribute('aria-current', 'page'); }
+  });
+
+  /* 분류별 필터: 법령은 국가·주제, 작품은 분야·만든 사람, 칼럼은 주제 */
+  var groups = [];
+  function uniq(key) { return items.map(function (i) { return i[key]; }).filter(function (v, i, a) { return v && a.indexOf(v) === i; }); }
+  if (cat === 'law')    groups = [{ key: 'country', label: '국가', values: uniq('country') }, { key: 'topic', label: '주제', values: uniq('topic') }];
+  if (cat === 'works')  groups = [{ key: 'kind', label: '분야', values: uniq('kind') }, { key: 'who', label: '만든 사람', values: ['운영자', '방문자'] }];
+  if (cat === 'column') groups = [{ key: 'topic', label: '주제', values: uniq('topic') }];
+
+  var state = {};
+  if (params.get('who') === 'visitor') state.who = '방문자';
+
+  function matches(it) {
+    return Object.keys(state).every(function (k) {
+      if (!state[k]) return true;
+      if (k === 'who') return (state.who === '방문자') === !!it.visitor;
+      return it[k] === state[k];
+    });
+  }
+
+  function renderFilters() {
+    var html = '';
+    groups.forEach(function (g) {
+      html += '<button class="chip' + (!state[g.key] ? ' on' : '') + '" data-key="' + g.key + '" data-val="">' + g.label + ' 전체</button>';
+      g.values.forEach(function (v) {
+        html += '<button class="chip' + (state[g.key] === v ? ' on' : '') + '" data-key="' + g.key + '" data-val="' + KPRI.esc(v) + '">' + KPRI.esc(v) + '</button>';
+      });
+      html += '<span style="width:12px"></span>';
+    });
+    document.getElementById('filters').innerHTML = html;
+  }
+
+  function renderList() {
+    var shown = items.filter(matches);
+    var box = document.getElementById('list');
+    if (!shown.length) { box.innerHTML = '<p class="empty">조건에 맞는 자료가 없습니다.</p>'; return; }
+    box.innerHTML = cat === 'works'
+      ? '<div class="card-grid cols-3">' + shown.map(KPRI.card).join('') + '</div>'
+      : '<ul class="post-list">' + shown.map(KPRI.postItem).join('') + '</ul>';
+  }
+
+  document.getElementById('filters').addEventListener('click', function (e) {
+    var b = e.target.closest('.chip');
+    if (!b) return;
+    state[b.dataset.key] = b.dataset.val;
+    renderFilters(); renderList();
+  });
+
+  renderFilters(); renderList();
+</script>
+</body>
+</html>

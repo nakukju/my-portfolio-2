@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>상세 — 한국초상권연구소</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="detail">
+<header id="site-header"></header>
+
+<main class="wrap">
+  <article class="detail" id="detail"></article>
+</main>
+
+<footer id="site-footer"></footer>
+
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script>
+  var e = KPRI.esc;
+  var it = KPRI.find(new URLSearchParams(location.search).get('id'));
+  var box = document.getElementById('detail');
+
+  if (!it) {
+    box.innerHTML = '<h1>자료를 찾을 수 없습니다</h1><p class="lead">주소가 바뀌었거나 삭제된 자료입니다.</p><a class="back" href="index.html">← 메인으로</a>';
+  } else {
+    var catName = KPRI_CATS[it.cat].name;
+    document.title = it.title + ' — 한국초상권연구소';
+
+    var top = '<p class="crumb"><a href="index.html">홈</a> / <a href="list.html?cat=' + it.cat + '">' + catName + '</a></p>';
+    var media = '', meta = '', extra = '';
+
+    if (it.cat === 'works') {
+      /* 실제 영상·음악은 이 영역을 <video>, <audio>, <iframe>(유튜브 등), <img>로 바꾸면 됩니다 */
+      media = '<div class="media" style="background:' + e(it.thumb) + '"><span class="play" aria-hidden="true">' +
+              (it.kind === '그림' ? '⤢' : '▶') + '</span><span class="sr-only">작품 감상 영역</span></div>';
+      meta = '<span class="tag tag-accent">' + e(it.kind) + '</span>' +
+             '<span>' + e(it.by) + '</span><span>' + KPRI.date(it.date) + '</span><span>' + e(it.length) + '</span>';
+      extra = '<dl class="source-box"><dt>사용한 AI 도구</dt><dd>' + e(it.tools) + '</dd>' +
+              '<dt>권리 안내</dt><dd>작품의 권리는 창작자에게 있습니다. 무단 복제·재배포를 삼가 주세요.</dd></dl>';
+    } else if (it.cat === 'law') {
+      meta = '<span class="tag tag-accent">' + e(it.country) + '</span><span class="tag">' + e(it.topic) + '</span>' +
+             '<span>게시 ' + KPRI.date(it.date) + '</span>';
+      extra = '<dl class="source-box"><dt>원문 출처</dt><dd>' + e(it.source) +
+              (it.sourceUrl ? ' — <a href="' + e(it.sourceUrl) + '" target="_blank" rel="noopener" style="text-decoration:underline">원문 사이트</a>' : '') + '</dd>' +
+              '<dt>기준일</dt><dd>' + KPRI.date(it.asOf) + ' 기준 · 이후 개정되었을 수 있습니다</dd></dl>' +
+              '<p class="notice">이 자료는 정보 제공을 위한 요약이며 법률 자문이 아닙니다. 구체적인 사안은 전문가와 상담하세요.</p>';
+    } else {
+      meta = '<span class="tag">' + e(it.topic) + '</span><span>' + e(it.by) + '</span><span>' + KPRI.date(it.date) + '</span>';
+    }
+
+    box.innerHTML = top + media +
+      '<h1>' + e(it.title) + '</h1><p class="lead">' + e(it.summary) + '</p>' +
+      '<div class="detail-meta">' + meta + '</div>' +
+      '<div class="body">' + KPRI.body(it.body) + '</div>' + extra +
+      '<a class="back" href="list.html?cat=' + it.cat + '">← ' + catName + ' 목록으로</a>';
+  }
+</script>
+</body>
+</html>

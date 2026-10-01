@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>한국초상권연구소</title>
+<meta name="description" content="초상권과 AI 창작물 저작권을 배우고, 창작물을 함께 즐기는 공간">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+<header id="site-header"></header>
+
+<main>
+  <!-- 연구소 이름과 짧은 소개 -->
+  <section class="intro">
+    <div class="wrap">
+      <p class="eyebrow">Korea Portrait Rights Lab</p>
+      <h1>내 얼굴, 내 목소리, 그리고<br><mark>AI가 만든 창작물</mark>의 권리를 함께 배웁니다</h1>
+      <p>한국초상권연구소는 여러 나라의 초상권·AI 창작물 저작권 법령과 사례를 쉽게 정리하고, AI로 만든 영화·음악·그림을 함께 감상하는 열린 공간입니다.</p>
+      <div class="intro-links">
+        <a class="btn btn-dark" href="list.html?cat=law">법령과 사례 보기</a>
+        <a class="btn" href="list.html?cat=works">AI 창작관 둘러보기</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 법령·사례 + 칼럼 최신글 -->
+  <section class="section">
+    <div class="wrap grid-2">
+      <div>
+        <div class="section-head">
+          <div><h2>법령과 사례</h2><p>국가·주제별 최신 자료</p></div>
+          <a class="more" href="list.html?cat=law">전체 보기 →</a>
+        </div>
+        <ul class="post-list" id="latest-law"></ul>
+      </div>
+      <div>
+        <div class="section-head">
+          <div><h2>칼럼</h2><p>쉽게 읽는 초상권·저작권 이야기</p></div>
+          <a class="more" href="list.html?cat=column">전체 보기 →</a>
+        </div>
+        <ul class="post-list" id="latest-column"></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI 창작관 -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>AI 창작관</h2><p>운영자가 AI로 만든 영화·영상·음악·그림</p></div>
+        <a class="more" href="list.html?cat=works">전체 보기 →</a>
+      </div>
+      <div class="card-grid" id="latest-works"></div>
+    </div>
+  </section>
+
+  <!-- 방문자 작품 -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <div><h2>방문자 작품</h2><p>방문자가 보내 준 작품을 운영자 확인 후 소개합니다</p></div>
+        <a class="more" href="list.html?cat=works&amp;who=visitor">전체 보기 →</a>
+      </div>
+      <div class="card-grid" id="latest-visitor"></div>
+      <div class="cta-band" style="margin-top:48px">
+        <div>
+          <h2>당신의 AI 창작물을 소개해 주세요</h2>
+          <p>작품과 설명을 보내 주시면 운영자가 확인한 뒤 AI 창작관에 공개합니다.</p>
+        </div>
+        <a class="btn btn-accent" href="submit.html">작품 올리기</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="site-footer"></footer>
+
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script>
+  document.getElementById('latest-law').innerHTML    = KPRI.byCat('law').slice(0, 4).map(KPRI.postItem).join('');
+  document.getElementById('latest-column').innerHTML = KPRI.byCat('column').slice(0, 4).map(KPRI.postItem).join('');
+  var works = KPRI.byCat('works');
+  document.getElementById('latest-works').innerHTML   = works.filter(function (w) { return !w.visitor; }).slice(0, 4).map(KPRI.card).join('');
+  document.getElementById('latest-visitor').innerHTML = works.filter(function (w) { return w.visitor; }).slice(0, 4).map(KPRI.card).join('');
+</script>
+</body>
+</html>

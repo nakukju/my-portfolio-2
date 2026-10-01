@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>작품 올리기 — 한국초상권연구소</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="submit">
+<header id="site-header"></header>
+
+<main class="wrap">
+  <div class="page-head" style="max-width:760px;margin:0 auto">
+    <p class="eyebrow">Submit</p>
+    <h1>작품 올리기</h1>
+    <p>AI로 만든 영화·영상·음악·그림을 보내 주세요. 운영자가 확인한 뒤 AI 창작관에 공개합니다.</p>
+  </div>
+
+  <!-- 지금은 화면만 있는 양식입니다. 실제로 받으려면 action에 Formspree·구글폼 등 받는 주소를 연결하세요. -->
+  <form class="form" id="submit-form" novalidate>
+    <fieldset class="fieldset">
+      <legend>1. 창작자 정보</legend>
+      <div class="row-2">
+        <div class="field">
+          <label for="f-name">이름 또는 활동명<span class="req">*</span></label>
+          <input type="text" id="f-name" name="name" required>
+          <p class="help">작품과 함께 공개됩니다.</p>
+        </div>
+        <div class="field">
+          <label for="f-email">이메일<span class="req">*</span></label>
+          <input type="email" id="f-email" name="email" required>
+          <p class="help">확인 결과 안내용이며 공개되지 않습니다.</p>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend>2. 작품 설명</legend>
+      <div class="row-2">
+        <div class="field">
+          <label for="f-title">작품 제목<span class="req">*</span></label>
+          <input type="text" id="f-title" name="title" required>
+        </div>
+        <div class="field">
+          <label for="f-kind">분야<span class="req">*</span></label>
+          <select id="f-kind" name="kind" required>
+            <option value="">선택해 주세요</option>
+            <option>영화</option><option>영상</option><option>음악</option><option>그림</option><option>기타</option>
+          </select>
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-desc">작품 설명<span class="req">*</span></label>
+        <textarea id="f-desc" name="description" required placeholder="작품을 만든 계기, 직접 작업한 부분 등을 자유롭게 적어 주세요."></textarea>
+      </div>
+      <div class="field">
+        <label for="f-tools">사용한 AI 도구</label>
+        <input type="text" id="f-tools" name="tools" placeholder="예: 이미지 생성 AI, 음악 생성 AI">
+      </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend>3. 파일 또는 링크</legend>
+      <div class="field">
+        <label for="f-file">파일 첨부</label>
+        <input type="file" id="f-file" name="file" accept="image/*,video/*,audio/*">
+        <p class="help">그림·음악·짧은 영상 파일. 용량이 큰 영상은 아래 링크로 보내 주세요.</p>
+      </div>
+      <div class="field">
+        <label for="f-link">작품 링크</label>
+        <input type="url" id="f-link" name="link" placeholder="https://">
+        <p class="help">유튜브, 사운드클라우드 등. 파일과 링크 중 하나는 꼭 필요합니다.</p>
+      </div>
+    </fieldset>
+
+    <fieldset class="fieldset">
+      <legend>4. 게시 동의</legend>
+      <label class="check"><input type="checkbox" name="agree-post" required> <span>작품과 이름(활동명)을 한국초상권연구소 AI 창작관에 게시하는 데 동의합니다.<span class="req">*</span></span></label>
+      <label class="check"><input type="checkbox" name="agree-rights" required> <span>작품에 실존 인물의 얼굴·목소리가 포함된 경우 당사자의 동의를 받았으며, 다른 사람의 저작권을 침해하지 않았음을 확인합니다.<span class="req">*</span></span></label>
+      <label class="check"><input type="checkbox" name="agree-privacy" required> <span>운영자 확인 결과 안내를 위해 이메일을 수집·이용하는 데 동의합니다.<span class="req">*</span></span></label>
+    </fieldset>
+
+    <p class="help" id="form-error" role="alert" style="color:#c2410c;font-weight:700;min-height:1.5em"></p>
+    <div class="form-actions">
+      <a class="btn" href="index.html">취소</a>
+      <button class="btn btn-dark" type="submit">작품 보내기</button>
+    </div>
+  </form>
+
+  <div class="done" id="done" hidden>
+    <div class="big" aria-hidden="true">✓</div>
+    <h2>작품이 접수되었습니다</h2>
+    <p>운영자가 확인한 뒤 입력하신 이메일로 결과를 알려 드립니다. 감사합니다!</p>
+    <a class="btn btn-accent" href="list.html?cat=works" style="margin-top:20px">AI 창작관 둘러보기</a>
+  </div>
+</main>
+
+<footer id="site-footer"></footer>
+
+<script src="js/data.js"></script>
+<script src="js/common.js"></script>
+<script>
+  var form = document.getElementById('submit-form');
+  form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var err = document.getElementById('form-error');
+    var hasMedia = form.file.files.length || form.link.value.trim();
+    if (!form.checkValidity()) { err.textContent = '* 표시된 항목을 모두 입력하고 동의해 주세요.'; form.reportValidity(); return; }
+    if (!hasMedia) { err.textContent = '파일을 첨부하거나 작품 링크를 입력해 주세요.'; form.link.focus(); return; }
+    err.textContent = '';
+    form.hidden = true;
+    document.querySelector('.page-head').hidden = true;
+    document.getElementById('done').hidden = false;
+    window.scrollTo(0, 0);
+  });
+</script>
+</body>
+</html>
